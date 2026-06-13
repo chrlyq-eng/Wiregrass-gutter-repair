@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — Wiregrass Gutter Pros</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container header-flex">
+            <div class="logo">
+                <a href="index.html">Wiregrass Gutter Pros</a>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="contact.html" class="phone-btn">[Insert Phone Number]</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1>About Wiregrass Gutter Pros</h1>
+            <p>Local experts delivering durable gutter solutions across the Wiregrass region.</p>
+            <a href="contact.html" class="cta-btn">Contact Us — [Insert Phone Number]</a>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Dedicated to Protecting Lower Alabama Homes</h2>
+                <div class="underline"></div>
+            </div>
+            <p>Our team is entirely focused on developing high standards and reliable protocols that enhance the gutter services you receive for your residential or commercial property. In the Wiregrass region, heavy seasonal rains, intense humidity, and severe weather can take a massive toll on your roofing and drainage systems. Because of this, we have always been deeply committed to high-quality outcomes.</p>
+            <p style="margin-top:12px;">We combine premium, weather-resistant materials with localized expertise. From minor seamless gutter adjustments to complete drainage overhauls, we ensure that you get a reliable, long-lasting service that protects your roof, fascia boards, siding, and foundation from costly water erosion.</p>
+        </div>
+    </section>
+
+    <section class="services-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Approach</h2>
+                <div class="underline"></div>
+                <p>Customer-focused assessments, transparent quotes, and professional installations backed by local service.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section about-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Request a Quote</h2>
+                <div class="underline"></div>
+            </div>
+            <form id="quote-form" class="contact-form" novalidate style="max-width:700px;margin:0 auto;display:flex;flex-direction:column;gap:10px;">
+                <label style="display:flex;flex-direction:column;"><strong>Name</strong><input type="text" name="name" required style="padding:8px;border-radius:4px;border:1px solid #ddd"></label>
+                <label style="display:flex;flex-direction:column;"><strong>Email</strong><input type="email" name="email" required style="padding:8px;border-radius:4px;border:1px solid #ddd"></label>
+                <label style="display:flex;flex-direction:column;"><strong>Phone</strong><input type="tel" name="phone" placeholder="Optional" style="padding:8px;border-radius:4px;border:1px solid #ddd"></label>
+                <label style="display:flex;flex-direction:column;"><strong>Comment</strong><textarea name="message" rows="4" required style="padding:8px;border-radius:4px;border:1px solid #ddd"></textarea></label>
+                <button type="submit" class="cta-btn">Request Quote</button>
+                <p id="quote-response" style="display:none;color:#1a2a3a;font-weight:bold;margin-top:6px;"></p>
+            </form>
+        </div>
+    </section>
+
+    <footer id="footer" class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-info">
+                <h3>Wiregrass Gutter Pros</h3>
+                <p class="phone-large"><a href="contact.html">[Insert Phone Number]</a></p>
+                <p><strong>Serving:</strong> Dothan, Enterprise, Ozark, Headland, Daleville, Geneva, and the Wiregrass region of Lower Alabama</p>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Wiregrass Gutter Pros. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">TOS</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    document.getElementById('quote-form').addEventListener('submit', function(e){
+        e.preventDefault();
+        var name = this.name.value.trim();
+        var email = this.email.value.trim();
+        var phone = this.phone.value.trim();
+        var msg = this.message.value.trim();
+        if(!name || !email || !msg){
+            alert('Please complete Name, Email, and Comment.');
+            return;
+        }
+        var resp = document.getElementById('quote-response');
+        resp.textContent = 'Thanks ' + name + ', we received your request and will contact you soon.';
+        resp.style.display = 'block';
+        this.reset();
+        console.log('Quote request (client-only):', {name:name,email:email,phone:phone,msg:msg});
+    });
+    </script>
+
+</body>
+</html>
