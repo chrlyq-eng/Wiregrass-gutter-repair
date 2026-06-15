@@ -88,6 +88,35 @@ a {
     color: #fff;
 }
 
+/* Make nav links lay out in a row and keep the phone button from breaking apart */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.phone-btn {
+    white-space: nowrap; /* keep the button text together */
+}
+
+/* Hamburger / toggle button (hidden on larger screens) */
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+}
+
+.nav-toggle .bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #1a2a3a;
+    margin: 4px 0;
+    border-radius: 2px;
+}
+
 /* --- Hero Section --- */
 .hero-section {
     position: relative;
@@ -241,9 +270,34 @@ a {
         flex-direction: column;
         gap: 15px;
     }
-    
+    /* show hamburger and collapse links into a toggleable column */
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
     .nav-links a {
-        margin: 0 10px;
+        margin: 0;
+        padding: 8px 0;
+        text-align: center;
+        border-top: 1px solid rgba(0,0,0,0.04);
+    }
+
+    /* Ensure the phone button, when moved to its own line, stays as a single block */
+    .nav-links .phone-btn {
+        display: inline-block;
+        margin: 8px auto 0 auto;
     }
     
     .hero-content h1 {
@@ -252,5 +306,53 @@ a {
     
     .hero-content p {
         font-size: 1rem;
+    }
+}
+
+/* Reduce large vertical spacing and heading sizes for mobile to keep content denser */
+@media(max-width: 480px) {
+    .about-section, .services-section {
+        padding: 40px 0;
+    }
+
+    .service-card {
+        padding: 20px;
+    }
+
+    .services-grid {
+        gap: 16px;
+    }
+
+    .hero-section {
+        min-height: 320px;
+        height: auto;
+        padding: 40px 0;
+    }
+
+    /* Reduce heading sizes and tighten line-height specifically for small screens */
+    .hero-content h1 {
+        font-size: 1.6rem;
+        line-height: 1.08;
+        margin-bottom: 12px;
+    }
+
+    .section-title h2 {
+        font-size: 1.5rem;
+        line-height: 1.08;
+        margin-bottom: 8px;
+    }
+
+    .service-card h3 {
+        font-size: 1.05rem;
+        line-height: 1.12;
+        margin-bottom: 8px;
+    }
+
+    /* Slightly reduce paragraph sizes for denser mobile layout */
+    .hero-content p,
+    .about-section p,
+    .service-card p {
+        font-size: 0.98rem;
+        line-height: 1.3;
     }
 }

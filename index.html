@@ -13,7 +13,12 @@
             <div class="logo">
                 <a href="index.html">Wiregrass Gutter Pros</a>
             </div>
-            <nav class="nav-links">
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <nav class="nav-links" id="site-nav">
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
                 <a href="services.html">Services</a>
@@ -50,29 +55,37 @@
                 <p>Seamless gutter installation, precision repairs, thorough cleanings, and advanced protection systems for homes and businesses across the Wiregrass.</p>
             </div>
 
-n            <div class="services-grid">
+                       <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-icon">🔧</div>
-                    <h3>Premium Seamless Gutter Installation</h3>
-                    <p>We extrude custom seamless aluminum and copper gutters on-site to match your home’s exact dimensions. Fewer seams means fewer leaks, a cleaner profile, and superior performance during heavy Lower Alabama rainfall. Available in 5" and 6" sizes and multiple colors.</p>
+                    <a class="service-link" href="services.html#installation">
+                        <div class="service-icon">🔧</div>
+                        <h3>Premium Seamless Gutter Installation</h3>
+                        <p>We extrude custom seamless aluminum and copper gutters on-site to match your home’s exact dimensions. Fewer seams means fewer leaks, a cleaner profile, and superior performance during heavy Lower Alabama rainfall. Available in 5" and 6" sizes and multiple colors.</p>
+                    </a>
                 </div>
 
                 <div class="service-card">
-                    <div class="service-icon">🛠️</div>
-                    <h3>Professional Gutter Repair &amp; Realignment</h3>
-                    <p>From sagging sections to leaking corners, we replace damaged fascia, re-secure hangers with heavy-duty structural screws, seal joints, and correct slope so water flows to downspouts — not your foundation.</p>
+                    <a class="service-link" href="services.html#repair">
+                        <div class="service-icon">🛠️</div>
+                        <h3>Professional Gutter Repair &amp; Realignment</h3>
+                        <p>From sagging sections to leaking corners, we replace damaged fascia, re-secure hangers with heavy-duty structural screws, seal joints, and correct slope so water flows to downspouts — not your foundation.</p>
+                    </a>
                 </div>
 
                 <div class="service-card">
-                    <div class="service-icon">🧹</div>
-                    <h3>Comprehensive Gutter Cleaning &amp; Debris Removal</h3>
-                    <p>We remove pine needles, oak leaves, and sludge, flush downspouts, and inspect the system for issues. Regular maintenance prevents roof leaks, pest problems, and costly water damage.</p>
+                    <a class="service-link" href="services.html#cleaning">
+                        <div class="service-icon">🧹</div>
+                        <h3>Comprehensive Gutter Cleaning &amp; Debris Removal</h3>
+                        <p>We remove pine needles, oak leaves, and sludge, flush downspouts, and inspect the system for issues. Regular maintenance prevents roof leaks, pest problems, and costly water damage.</p>
+                    </a>
                 </div>
 
                 <div class="service-card">
-                    <div class="service-icon">🛡️</div>
-                    <h3>Leaf Guards &amp; Gutter Protection Systems</h3>
-                    <p>Install advanced guard systems to block leaves and debris while maximizing water flow. Reduce maintenance frequency, avoid ladder risks, and extend the life of your gutters.</p>
+                    <a class="service-link" href="services.html#guards">
+                        <div class="service-icon">🛡️</div>
+                        <h3>Leaf Guards &amp; Gutter Protection Systems</h3>
+                        <p>Install advanced guard systems to block leaves and debris while maximizing water flow. Reduce maintenance frequency, avoid ladder risks, and extend the life of your gutters.</p>
+                    </a>
                 </div>
             </div>
         </div>
@@ -125,6 +138,24 @@ n            <div class="services-grid">
         this.reset();
         console.log('Quote request (client-only):', {name:name,email:email,phone:phone,msg:msg});
     });
+
+    // Navigation toggle for mobile hamburger
+    (function(){
+        var btn = document.querySelector('.nav-toggle');
+        var nav = document.getElementById('site-nav');
+        if(!btn || !nav) return;
+        btn.addEventListener('click', function(){
+            var isOpen = nav.classList.toggle('open');
+            btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+        // close nav when a link is clicked (improves UX on mobile)
+        nav.addEventListener('click', function(e){
+            if(e.target.tagName === 'A'){
+                nav.classList.remove('open');
+                btn.setAttribute('aria-expanded','false');
+            }
+        });
+    })();
     </script>
 
 </body>
