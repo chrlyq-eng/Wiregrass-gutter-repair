@@ -194,7 +194,8 @@ a {
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, minmax(300px, 500px));
+    justify-content: center;
     gap: 30px;
     margin-top: 40px;
 }
@@ -358,14 +359,10 @@ a {
 }
 
 /* Limit services grid columns: at most 2 columns on medium screens, 1 on small */
-@media (max-width: 1100px) {
-    .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
+/* Services grid: switch to one column on smaller screens */
 @media (max-width: 700px) {
     .services-grid {
         grid-template-columns: 1fr;
+        justify-content: stretch;
     }
 }
