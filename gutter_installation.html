@@ -21,11 +21,27 @@
             <nav class="nav-links" id="site-nav">
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
-                <a href="services.html">Services</a>
-                <a href="gutter_installation.html">Gutter Installation</a>
-                <a href="Gutter Repair.html">Gutter Repair</a>
-                <a href="Gutter Cleaning.html">Gutter Cleaning</a>
-                <a href="Gutter Guards.html">Gutter Guards</a>
+                <div class="nav-item dropdown" data-dropdown="services">
+                    <a href="services.html">Services</a>
+                    <div class="dropdown-menu">
+                        <a href="services.html">Overview</a>
+                        <a href="gutter-installation.html">Gutter Installation</a>
+                        <a href="gutter-repair.html">Gutter Repair</a>
+                        <a href="gutter-cleaning.html">Gutter Cleaning</a>
+                        <a href="gutter-guards.html">Gutter Guards</a>
+                    </div>
+                </div>
+                <div class="nav-item dropdown" data-dropdown="locations">
+                    <a href="#">Locations</a>
+                    <div class="dropdown-menu">
+                        <a href="dothan.html">Dothan</a>
+                        <a href="enterprise.html">Enterprise</a>
+                        <a href="ozark.html">Ozark</a>
+                        <a href="daleville.html">Daleville</a>
+                        <a href="headland.html">Headland</a>
+                        <a href="geneva.html">Geneva</a>
+                    </div>
+                </div>
                 <a href="contact.html" class="phone-btn">[Insert Phone Number]</a>
             </nav>
         </div>
@@ -107,7 +123,7 @@
         console.log('Quote request (client-only):', {name:name,email:email,phone:phone,msg:msg});
     });
 
-    // Navigation toggle for mobile hamburger
+     // Navigation toggle for mobile hamburger
     (function(){
         var btn = document.querySelector('.nav-toggle');
         var nav = document.getElementById('site-nav');
@@ -117,9 +133,33 @@
             btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         });
         nav.addEventListener('click', function(e){
-            if(e.target.tagName === 'A'){
+            if(e.target.tagName === 'A' && !e.target.closest('.dropdown')){
                 nav.classList.remove('open');
                 btn.setAttribute('aria-expanded','false');
+            }
+        });
+    })();
+
+    // Dropdown menu functionality
+    (function(){
+        var dropdowns = document.querySelectorAll('.nav-item.dropdown');
+        dropdowns.forEach(function(dropdown){
+            var link = dropdown.querySelector('a:first-child');
+            link.addEventListener('click', function(e){
+                e.preventDefault();
+                var isOpen = dropdown.classList.toggle('open');
+                // Close other dropdowns
+                dropdowns.forEach(function(other){
+                    if(other !== dropdown) other.classList.remove('open');
+                });
+            });
+        });
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(e){
+            if(!e.target.closest('.nav-item')){
+                dropdowns.forEach(function(dropdown){
+                    dropdown.classList.remove('open');
+                });
             }
         });
     })();
