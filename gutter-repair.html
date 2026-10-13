@@ -42,7 +42,7 @@
                         <a href="geneva.html">Geneva</a>
                     </div>
                 </div>
-                <a href="contact.html" class="phone-btn">[Insert Phone Number]</a>
+                <a href="contact.html" class="phone-btn">(208) 715-1414</a>
             </nav>
         </div>
     </header>
@@ -52,7 +52,7 @@
         <div class="container hero-content">
             <h1>Expert Gutter Repair & Realignment</h1>
             <p>Fix sagging, leaking, and damaged gutters across the Wiregrass</p>
-            <a href="contact.html" class="cta-btn">Request Repair — [Insert Phone Number]</a>
+            <a href="contact.html" class="cta-btn">Request Repair — (208) 715-1414</a>
         </div>
     </section>
 
@@ -83,7 +83,10 @@
                 <h2>Request a Quote</h2>
                 <div class="underline"></div>
             </div>
-            <form id="quote-form" class="contact-form" novalidate style="max-width:700px;margin:0 auto;display:flex;flex-direction:column;gap:10px;">
+            <form id="quote-form" name="quote-request" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" class="contact-form" novalidate style="max-width:700px;margin:0 auto;display:flex;flex-direction:column;gap:10px;">
+                <input type="hidden" name="form-name" value="quote-request">
+                <input type="hidden" name="page" value="">
+                <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
                 <label style="display:flex;flex-direction:column;"><strong>Name</strong><input type="text" name="name" required style="padding:8px;border-radius:4px;border:1px solid #ddd"></label>
                 <label style="display:flex;flex-direction:column;"><strong>Email</strong><input type="email" name="email" required style="padding:8px;border-radius:4px;border:1px solid #ddd"></label>
                 <label style="display:flex;flex-direction:column;"><strong>Phone</strong><input type="tel" name="phone" placeholder="Optional" style="padding:8px;border-radius:4px;border:1px solid #ddd"></label>
@@ -98,7 +101,7 @@
         <div class="container footer-content">
             <div class="footer-info">
                 <h3>Wiregrass Gutter Pros</h3>
-                <p class="phone-large"><a href="contact.html">[Insert Phone Number]</a></p>
+                <p class="phone-large"><a href="contact.html">(208) 715-1414</a></p>
                 <p><strong>Serving:</strong> Dothan, Enterprise, Ozark, Headland, Daleville, Geneva, and the Wiregrass region of Lower Alabama</p>
             </div>
             <div class="footer-bottom">
@@ -118,11 +121,25 @@
             alert('Please complete Name, Email, and Comment.');
             return;
         }
+        var form = this;
         var resp = document.getElementById('quote-response');
-        resp.textContent = 'Thanks ' + name + ', we received your request and will contact you soon.';
-        resp.style.display = 'block';
-        this.reset();
-        console.log('Quote request (client-only):', {name:name,email:email,phone:phone,msg:msg});
+        var btn = form.querySelector('button[type="submit"]');
+        form.page.value = document.title + ' (' + window.location.pathname + ')';
+        btn.disabled = true;
+        fetch('/', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            body: new URLSearchParams(new FormData(form)).toString()
+        }).then(function(res){
+            if(!res.ok) throw new Error('Submission failed');
+            resp.textContent = 'Thanks ' + name + ', we received your request and will contact you soon.';
+            form.reset();
+        }).catch(function(){
+            resp.textContent = 'Sorry, something went wrong. Please try again or call us at (208) 715-1414.';
+        }).then(function(){
+            resp.style.display = 'block';
+            btn.disabled = false;
+        });
     });
 
     // Navigation toggle for mobile hamburger
