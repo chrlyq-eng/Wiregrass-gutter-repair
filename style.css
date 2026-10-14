@@ -267,6 +267,36 @@ a {
     color: #666;
 }
 
+/* --- Legal Pages (Privacy Policy, Terms of Service) --- */
+.legal-section {
+    text-align: left;
+}
+
+.legal-section .container {
+    max-width: 800px;
+}
+
+.legal-section h2 {
+    font-size: 1.4rem;
+    color: #1a2a3a;
+    margin: 32px 0 10px;
+}
+
+.legal-section p {
+    margin: 0 0 12px;
+    max-width: none;
+}
+
+.legal-section ul {
+    margin: 0 0 12px 22px;
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.legal-section li {
+    margin-bottom: 4px;
+}
+
 /* --- Services Section --- */
 .services-section {
     padding: 80px 0;
