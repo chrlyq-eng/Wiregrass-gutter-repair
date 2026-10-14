@@ -201,8 +201,8 @@ a {
 /* --- Hero Section --- */
 .hero-section {
     position: relative;
-    /* Placeholder background color - You can replace this with a background-image later */
-    background: #1a2a3a url('https://via.placeholder.com/1920x800') no-repeat center center/cover;
+    /* Each page sets its own photo with style="--hero-image: url(...)" */
+    background: #1a2a3a var(--hero-image, none) no-repeat center center/cover;
     height: 70vh;
     min-height: 450px;
     display: flex;
@@ -267,6 +267,22 @@ a {
     color: #666;
 }
 
+/* --- Content Photos --- */
+.content-photo {
+    max-width: 800px;
+    margin: 0 auto 30px auto;
+}
+
+.content-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
 /* --- Legal Pages (Privacy Policy, Terms of Service) --- */
 .legal-section {
     text-align: left;
@@ -327,6 +343,16 @@ a {
 .service-icon {
     font-size: 3rem;
     margin-bottom: 15px;
+}
+
+.service-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 20px;
 }
 
 .service-card h3 {
